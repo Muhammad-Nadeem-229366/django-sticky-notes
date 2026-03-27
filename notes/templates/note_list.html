@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+  <h2>Your Notes</h2>
+  <a class="btn btn-primary" href="/notes/new/">+ New Note</a>
+</div>
+
+<div class="row">
+  {% for note in notes %}
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-sm" style="background: {{ note.color }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ note.title }}</h5>
+        <p class="card-text">{{ note.content }}</p>
+
+        <a href="/notes/{{ note.id }}/edit/" class="btn btn-sm btn-warning"
+          >Edit</a
+        >
+        <a href="/notes/{{ note.id }}/delete/" class="btn btn-sm btn-danger"
+          >Delete</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

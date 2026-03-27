@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card shadow-lg p-4 border-0">
+      <h3 class="text-center mb-4">Create Account</h3>
+
+      <!-- Show Errors -->
+      {% if form.errors %}
+      <div class="alert alert-danger">Please fix the errors below</div>
+      {% endif %}
+
+      <!-- ye register form hai jahan naya user apna account create karta hai -->
+      <form method="post">
+        {% csrf_token %}
+
+        <!-- Username -->
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          {{ form.username }}
+          <small class="text-danger">{{ form.username.errors }}</small>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          {{ form.password1 }}
+          <small class="text-danger">{{ form.password1.errors }}</small>
+        </div>
+
+        <!-- Password Help -->
+        <ul class="small text-muted">
+          <li>At least 8 characters</li>
+          <li>Not too common</li>
+          <li>Not entirely numeric</li>
+        </ul>
+
+        <!-- Confirm Password -->
+        <div class="mb-3">
+          <label class="form-label">Confirm Password</label>
+          {{ form.password2 }}
+          <small class="text-danger">{{ form.password2.errors }}</small>
+        </div>
+
+        <button class="btn btn-primary w-100">Register</button>
+      </form>
+
+      <hr />
+
+      <p class="text-center mb-0">
+        Already have an account?
+        <a href="/login/">Login</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

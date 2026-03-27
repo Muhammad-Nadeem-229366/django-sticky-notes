@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="height: 70vh"
+>
+  <div
+    class="card shadow p-4 text-center"
+    style="width: 400px; border-radius: 15px"
+  >
+    <!-- ye page user se confirm kar raha hai ke note delete karna hai ya nahi -->
+
+    <h3 class="mb-3 text-danger">Delete Note</h3>
+
+    <p class="mb-4">Are you sure to delete this note?</p>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <button type="submit" class="btn btn-danger w-100 mb-2">
+        Yes, Delete
+      </button>
+    </form>
+
+    <a href="/notes/" class="btn btn-secondary w-100"> Cancel </a>
+  </div>
+</div>
+
+{% endblock %}

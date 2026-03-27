@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- ye form note create aur edit dono ke liye use hota hai, agar note exist kare to edit mode hota hai warna create mode -->
+
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="min-height: 80vh"
+>
+  <div class="card shadow-lg p-4" style="width: 600px; border-radius: 15px">
+    <h3 class="text-center mb-4">
+      {% if form.instance.pk %} Edit Note {% else %} Create Note {% endif %}
+    </h3>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <!-- ye input note ka title lene ke liye hai -->
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input
+          type="text"
+          name="title"
+          class="form-control"
+          value="{{ form.title.value|default:'' }}"
+          required
+        />
+      </div>
+
+      <!-- ye textarea note ka content likhne ke liye use hota hai -->
+      <div class="mb-3">
+        <label class="form-label">Content</label>
+        <textarea name="content" class="form-control" rows="5" required>
+{{ form.content.value|default:'' }}</textarea
+        >
+      </div>
+
+      <!-- ye color picker hai jahan user note ka background color select karta hai -->
+      <div class="mb-4">
+        <label class="form-label">Choose Color</label>
+        <input
+          type="color"
+          name="color"
+          class="form-control form-control-color"
+          value="{{ form.color.value|default:'#ffff99' }}"
+        />
+      </div>
+
+      <!-- ye buttons save aur cancel actions ke liye hain -->
+      <div class="d-flex justify-content-between">
+        <a href="/notes/" class="btn btn-secondary"> Cancel </a>
+
+        <button type="submit" class="btn btn-primary px-4">Save Note</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
